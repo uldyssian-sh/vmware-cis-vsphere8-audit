@@ -2,7 +2,7 @@
 
 **Name**: cis-vsphere8-audit.ps1  
 **Purpose**: Read-only compliance checks for VMware vSphere 8 against common CIS / vSphere hardening items. Prints summary tables to console.  
-**Author**: uldyssian-sh  
+**Author**: LT  
 **Version**: 1.0  
 **Target**: VMware vSphere 8  
 
