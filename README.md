@@ -4,7 +4,6 @@
 **Purpose**: Read-only compliance checks for VMware vSphere 8 against common CIS / vSphere hardening items. Prints summary tables to console.  
 **Author**: LT  
 **Version**: 1.0  
-**Target**: VMware vSphere 8  
 
 ---
 
