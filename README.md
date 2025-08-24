@@ -7,6 +7,11 @@
 
 ---
 
+## License for This Repository
+This repository’s own content (README, file list, structure) is licensed under the MIT License. See LICENSE for details.
+
+---
+
 ## Disclaimer
 
 This script is provided "as is", without any warranty of any kind. Use it at your own risk. You are solely responsible for reviewing, testing, and implementing it in your own environment.
