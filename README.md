@@ -8,6 +8,8 @@
 
 A comprehensive PowerShell-based audit tool for VMware vSphere 8 environments that performs **read-only compliance checks** against CIS (Center for Internet Security) benchmarks and VMware hardening guidelines.
 
+**Author**: LT - [GitHub Profile](https://github.com/uldyssian-sh)
+
 ## 🚀 Features
 
 - **Read-Only Operations**: No configuration changes, completely safe to run in production
