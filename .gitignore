@@ -1,0 +1,154 @@
+# PowerShell
+*.ps1xml
+*.psd1
+*.psm1~
+*.tmp
+
+# Logs
+*.log
+logs/
+*.log.*
+
+# Test Results
+TestResults.xml
+coverage.xml
+*.trx
+*.coverage
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Credentials and sensitive data
+*.cred
+*.credential
+credentials.xml
+*.key
+*.pem
+*.pfx
+*.p12
+
+# Temporary files
+temp/
+tmp/
+*.tmp
+*.temp
+
+# Build artifacts
+build/
+dist/
+release/
+*.zip
+*.tar.gz
+*.7z
+
+# PowerCLI cache
+VMware/
+
+# Local configuration
+config.local.json
+settings.local.json
+.env.local
+
+# Backup files
+*.bak
+*.backup
+*.old
+
+# Documentation build
+docs/_build/
+docs/site/
+
+# Node.js (if using for documentation)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python (if using for tooling)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+
+# JetBrains IDEs
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Local test data
+test-data/
+mock-data/
+
+# Performance logs
+*.perf
+*.prof
+
+# Windows
+desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*

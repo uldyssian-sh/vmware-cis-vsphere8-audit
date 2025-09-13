@@ -1,0 +1,186 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  release:
+    types: [ published ]
+
+env:
+  POWERSHELL_TELEMETRY_OPTOUT: 1
+
+jobs:
+  test:
+    name: Test on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        include:
+          - os: ubuntu-latest
+            shell: pwsh
+          - os: windows-latest
+            shell: powershell
+          - os: macos-latest
+            shell: pwsh
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup PowerShell
+      if: matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest'
+      shell: bash
+      run: |
+        if [[ "${{ matrix.os }}" == "ubuntu-latest" ]]; then
+          sudo apt-get update
+          sudo apt-get install -y wget apt-transport-https software-properties-common
+          wget -q "https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/packages-microsoft-prod.deb"
+          sudo dpkg -i packages-microsoft-prod.deb
+          sudo apt-get update
+          sudo apt-get install -y powershell
+        elif [[ "${{ matrix.os }}" == "macos-latest" ]]; then
+          brew install --cask powershell
+        fi
+
+    - name: Install PowerShell modules
+      shell: ${{ matrix.shell }}
+      run: |
+        Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+        Install-Module -Name Pester -Force -SkipPublisherCheck
+        Install-Module -Name PSScriptAnalyzer -Force
+        Install-Module -Name VMware.PowerCLI -Force
+
+    - name: Run PSScriptAnalyzer
+      shell: ${{ matrix.shell }}
+      run: |
+        $results = Invoke-ScriptAnalyzer -Path ./cis-vsphere8-audit.ps1 -Severity Warning
+        if ($results) {
+          $results | Format-Table -AutoSize
+          Write-Error "PSScriptAnalyzer found issues"
+        } else {
+          Write-Host "PSScriptAnalyzer: No issues found" -ForegroundColor Green
+        }
+
+    - name: Run Pester tests
+      shell: ${{ matrix.shell }}
+      run: |
+        if (Test-Path ./tests) {
+          $config = New-PesterConfiguration
+          $config.Run.Path = './tests'
+          $config.Output.Verbosity = 'Detailed'
+          $config.CodeCoverage.Enabled = $true
+          $config.CodeCoverage.Path = './cis-vsphere8-audit.ps1'
+          $config.TestResult.Enabled = $true
+          $config.TestResult.OutputFormat = 'NUnitXml'
+          $config.TestResult.OutputPath = './TestResults.xml'
+          
+          Invoke-Pester -Configuration $config
+        } else {
+          Write-Host "No tests directory found, skipping tests" -ForegroundColor Yellow
+        }
+
+    - name: Upload test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: test-results-${{ matrix.os }}
+        path: TestResults.xml
+
+  security-scan:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: 'fs'
+        scan-ref: '.'
+        format: 'sarif'
+        output: 'trivy-results.sarif'
+
+    - name: Upload Trivy scan results
+      uses: github/codeql-action/upload-sarif@v3
+      with:
+        sarif_file: 'trivy-results.sarif'
+
+  documentation:
+    name: Documentation Check
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Check documentation
+      run: |
+        # Check if required documentation files exist
+        required_files=("README.md" "CONTRIBUTING.md" "LICENSE" "CHANGELOG.md")
+        for file in "${required_files[@]}"; do
+          if [[ ! -f "$file" ]]; then
+            echo "❌ Missing required file: $file"
+            exit 1
+          else
+            echo "✅ Found: $file"
+          fi
+        done
+        
+        # Check README.md has minimum content
+        if [[ $(wc -l < README.md) -lt 50 ]]; then
+          echo "❌ README.md appears to be too short"
+          exit 1
+        fi
+        
+        echo "✅ Documentation check passed"
+
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    needs: [test, security-scan, documentation]
+    if: github.event_name == 'release'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Create release archive
+      run: |
+        mkdir -p release
+        cp cis-vsphere8-audit.ps1 release/
+        cp README.md release/
+        cp LICENSE release/
+        cp CHANGELOG.md release/
+        
+        # Create zip archive
+        cd release
+        zip -r ../vmware-cis-vsphere8-audit-${{ github.event.release.tag_name }}.zip .
+        cd ..
+        
+        # Create tar.gz archive
+        tar -czf vmware-cis-vsphere8-audit-${{ github.event.release.tag_name }}.tar.gz -C release .
+
+    - name: Upload release assets
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ github.event.release.upload_url }}
+        asset_path: ./vmware-cis-vsphere8-audit-${{ github.event.release.tag_name }}.zip
+        asset_name: vmware-cis-vsphere8-audit-${{ github.event.release.tag_name }}.zip
+        asset_content_type: application/zip
+
+    - name: Upload tar.gz release asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ github.event.release.upload_url }}
+        asset_path: ./vmware-cis-vsphere8-audit-${{ github.event.release.tag_name }}.tar.gz
+        asset_name: vmware-cis-vsphere8-audit-${{ github.event.release.tag_name }}.tar.gz
+        asset_content_type: application/gzip
