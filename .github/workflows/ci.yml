@@ -18,13 +18,6 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        include:
-          - os: ubuntu-latest
-            shell: pwsh
-          - os: windows-latest
-            shell: powershell
-          - os: macos-latest
-            shell: pwsh
     
     steps:
     - name: Checkout code
@@ -46,7 +39,7 @@ jobs:
         fi
 
     - name: Install PowerShell modules
-      shell: ${{ matrix.shell }}
+      shell: pwsh
       run: |
         Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
         Install-Module -Name Pester -Force -SkipPublisherCheck
@@ -54,7 +47,7 @@ jobs:
         Install-Module -Name VMware.PowerCLI -Force
 
     - name: Run PSScriptAnalyzer
-      shell: ${{ matrix.shell }}
+      shell: pwsh
       run: |
         try {
           $results = Invoke-ScriptAnalyzer -Path ./cis-vsphere8-audit.ps1 -Severity Error
@@ -69,7 +62,7 @@ jobs:
         }
 
     - name: Run Pester tests
-      shell: ${{ matrix.shell }}
+      shell: pwsh
       run: |
         if (Test-Path ./tests) {
           Write-Host "Running basic test validation" -ForegroundColor Green
