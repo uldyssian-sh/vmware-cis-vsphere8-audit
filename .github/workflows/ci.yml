@@ -42,9 +42,9 @@ jobs:
       shell: pwsh
       run: |
         Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
-        Install-Module -Name Pester -Force -SkipPublisherCheck
-        Install-Module -Name PSScriptAnalyzer -Force
-        Install-Module -Name VMware.PowerCLI -Force
+        Install-Module -Name Pester -Force -SkipPublisherCheck -AllowClobber
+        Install-Module -Name PSScriptAnalyzer -Force -AllowClobber
+        Install-Module -Name VMware.PowerCLI -Force -AllowClobber
 
     - name: Run PSScriptAnalyzer
       shell: pwsh
