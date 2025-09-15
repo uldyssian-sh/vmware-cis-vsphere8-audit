@@ -152,3 +152,14 @@ Temporary Items
 .directory
 .Trash-*
 .nfs*
+# Performance optimization
+*.log
+*.tmp
+*.cache
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+node_modules/
+.vscode/settings.json
+.idea/
