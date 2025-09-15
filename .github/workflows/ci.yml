@@ -21,7 +21,7 @@ jobs:
     
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
 
     - name: Setup PowerShell
       if: matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest'
@@ -90,7 +90,7 @@ jobs:
     
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
 
     - name: Basic security check
       run: |
@@ -108,7 +108,7 @@ jobs:
     
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
 
     - name: Check documentation
       run: |
@@ -139,7 +139,7 @@ jobs:
     
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
 
     - name: Create release archive
       run: |
