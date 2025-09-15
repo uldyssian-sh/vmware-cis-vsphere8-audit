@@ -287,4 +287,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Disclaimer**: This tool is provided "as is" without warranty. Always test in non-production environments first. Users are responsible for reviewing and validating all configurations in their specific environments.
+**Disclaimer**: This tool is provided "as is" without warranty.
+Always test in non-production environments first.
+Users are responsible for reviewing and validating all configurations in their specific environments.
