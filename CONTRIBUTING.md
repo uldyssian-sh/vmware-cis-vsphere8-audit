@@ -199,7 +199,7 @@ function Get-Example {
         [Parameter(Mandatory)]
         [string]$ParameterName
     )
-    
+
     # Implementation
 }
 ```
@@ -240,10 +240,10 @@ Describe "VM Security Checks" {
         It "Should detect disabled copy operations" {
             # Arrange
             $mockVM = New-MockVM -Name "TestVM"
-            
+
             # Act
             $result = Test-VMCopyDisabled -VM $mockVM
-            
+
             # Assert
             $result | Should -Be $true
         }

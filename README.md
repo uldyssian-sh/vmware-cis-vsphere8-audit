@@ -102,7 +102,7 @@ Get-Module -ListAvailable VMware.PowerCLI
 ### Scope Options
 
 - **`VM`**: Audit Virtual Machine configurations only
-- **`Host`**: Audit ESXi host configurations only  
+- **`Host`**: Audit ESXi host configurations only
 - **`VC`**: Audit vCenter Server configurations only
 - **`All`**: Comprehensive audit of all components (default)
 
