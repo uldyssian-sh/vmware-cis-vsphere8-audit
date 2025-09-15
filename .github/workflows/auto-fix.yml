@@ -20,7 +20,7 @@ jobs:
         find . -name "*.yml" -o -name "*.yaml" | xargs -I {} sed -i 's/[[:space:]]*$//' {} 2>/dev/null || true
         
     - name: Create PR for review
-      uses: peter-evans/create-pull-request@v5
+      uses: peter-evans/create-pull-request@v7
       with:
         title: 'Auto-fix: Safe formatting only'
         body: 'Only safe formatting changes - no dependency updates'
