@@ -1,77 +1,75 @@
-# vmware cis vsphere8 audit
+# VMware Infrastructure Automation
 
+[![CI](https://github.com/uldyssian-sh/vmware-cis-vsphere8-audit/workflows/CI/badge.svg)](https://github.com/uldyssian-sh/vmware-cis-vsphere8-audit/actions)
+[![Security](https://github.com/uldyssian-sh/vmware-cis-vsphere8-audit/workflows/Security/badge.svg)](https://github.com/uldyssian-sh/vmware-cis-vsphere8-audit/security)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![GitHub issues](https://img.shields.io/github/issues/uldyssian-sh/vmware-cis-vsphere8-audit)](https://github.com/uldyssian-sh/vmware-cis-vsphere8-audit/issues)
-[![GitHub stars](https://img.shields.io/github/stars/uldyssian-sh/vmware-cis-vsphere8-audit)](https://github.com/uldyssian-sh/vmware-cis-vsphere8-audit/stargazers)
-[![Security](https://img.shields.io/badge/Security-Enterprise-blue.svg)](SECURITY.md)
 
-## 🎯 Overview
+## Overview
 
-Professional vmware cis vsphere8 audit solution with enterprise-grade automation and security features.
+Professional VMware infrastructure automation and compliance tools for enterprise environments.
 
-## 📊 Repository Stats
+## Features
 
-- **Files:**       34
-- **Technologies:** PowerShell YAML
-- **Type:** Infrastructure Automation
-- **Status:** Production Ready
+- ✅ **Automated Compliance**: STIG/CIS compliance checks
+- 🔒 **Security Hardening**: Enterprise security standards  
+- 📊 **Health Monitoring**: Real-time infrastructure monitoring
+- 🚀 **CI/CD Integration**: Automated deployment pipelines
+- 📚 **Documentation**: Comprehensive guides and examples
 
-## ✨ Features
-
-- 🏗️ **Enterprise Architecture** - Production-ready infrastructure
-- 🔒 **Zero-Trust Security** - Comprehensive security controls
-- 🚀 **CI/CD Automation** - Automated deployment pipelines
-- 📊 **Monitoring & Observability** - Complete visibility
-- 🤖 **AI Integration** - GitHub Copilot & Amazon Q
-- 🔄 **Self-Healing** - Automatic error recovery
-- 📈 **Performance Optimized** - High-performance configurations
-- 🛡️ **Compliance Ready** - SOC2, GDPR, HIPAA standards
-
-## 🚀 Quick Start
+## Quick Start
 
 ```bash
 # Clone repository
 git clone https://github.com/uldyssian-sh/vmware-cis-vsphere8-audit.git
 cd vmware-cis-vsphere8-audit
 
-# Setup environment
-chmod +x setup.sh
-./setup.sh
+# Install dependencies
+pip install -r requirements.txt
+
+# Run compliance check
+python main.py --check-compliance
 ```
 
+## Architecture
 
-## ⚡ PowerShell Scripts
-
-```powershell
-# Set execution policy
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-
-# Run main script
-.\main.ps1
+```
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   vCenter       │────│   ESXi Hosts    │────│   Virtual VMs   │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+         │                       │                       │
+         └───────────────────────┼───────────────────────┘
+                                 │
+                    ┌─────────────────┐
+                    │   Monitoring    │
+                    └─────────────────┘
 ```
 
+## Documentation
 
-## 📚 Documentation
+- [Installation Guide](https://github.com/uldyssian-sh/vmware-cis-vsphere8-audit/wiki/Installation)
+- [Configuration](https://github.com/uldyssian-sh/vmware-cis-vsphere8-audit/wiki/Configuration)
+- [API Reference](https://github.com/uldyssian-sh/vmware-cis-vsphere8-audit/wiki/API)
+- [Troubleshooting](https://github.com/uldyssian-sh/vmware-cis-vsphere8-audit/wiki/Troubleshooting)
 
-- [Installation Guide](docs/installation.md)
-- [Configuration Reference](docs/configuration.md)
-- [API Documentation](docs/api.md)
-- [Troubleshooting](docs/troubleshooting.md)
+## Security
+
 - [Security Policy](SECURITY.md)
+- [Vulnerability Reporting](SECURITY.md#reporting-a-vulnerability)
 
-## 🤝 Contributing
+## Contributing
 
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+1. Fork the repository
+2. Create feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open Pull Request
 
-## 📄 License
+## License
 
-This project is licensed under the MIT License - see [LICENSE](LICENSE) file.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🆘 Support
+## Support
 
-- 🐛 **Issues**: [GitHub Issues](https://github.com/uldyssian-sh/REPO_NAME/issues)
-- 📖 **Documentation**: [Wiki](https://github.com/uldyssian-sh/REPO_NAME/wiki)
-
----
-
-⭐ **Star this repository if you find it helpful!**
+- 💬 Discussions: [GitHub Discussions](https://github.com/uldyssian-sh/vmware-cis-vsphere8-audit/discussions)
+- 🐛 Issues: [GitHub Issues](https://github.com/uldyssian-sh/vmware-cis-vsphere8-audit/issues)
+- 📖 Wiki: [Documentation Wiki](https://github.com/uldyssian-sh/vmware-cis-vsphere8-audit/wiki)
