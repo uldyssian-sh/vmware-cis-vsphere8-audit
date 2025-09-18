@@ -1,7 +1,7 @@
 {
-  "name": "vmware-cis-vsphere8-audit",
+  "name": "@uldyssian-sh/vmware-cis-vsphere8-audit",
   "version": "1.0.0",
-  "description": "Enterprise automation and management solution",
+  "description": "VMware vSphere 8 CIS compliance audit tool for enterprise security assessment",
   "main": "index.js",
   "scripts": {
     "test": "echo \"No tests specified\" && exit 0",

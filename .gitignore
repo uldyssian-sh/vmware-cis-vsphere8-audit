@@ -152,6 +152,41 @@ Temporary Items
 .directory
 .Trash-*
 .nfs*
+# Security scan results
+trivy-results.sarif
+security-scan-results/
+vulnerability-reports/
+
+# CI/CD artifacts
+.github/workflows/cache/
+artifacts/
+reports/
+
+# Pre-commit
+.pre-commit-config.yaml.bak
+
+# Coverage reports
+coverage/
+.coverage
+.nyc_output
+
+# Dependency directories
+.pnpm-store/
+.yarn/
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
 # Performance optimization
 *.log
 *.tmp
