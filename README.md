@@ -1,11 +1,9 @@
 # VMware vSphere 8 CIS Compliance Audit Tool
 
-[![GitHub license](https://img.shields.io/github/license/uldyssian-sh/vmware-cis-vsphere8-audit)](https://github.com/uldyssian-sh/vmware-cis-vsphere8-audit/blob/main/LICENSE)
-[![GitHub issues](https://img.shields.io/github/issues/uldyssian-sh/vmware-cis-vsphere8-audit)](https://github.com/uldyssian-sh/vmware-cis-vsphere8-audit/issues)
-[![GitHub stars](https://img.shields.io/github/stars/uldyssian-sh/vmware-cis-vsphere8-audit)](https://github.com/uldyssian-sh/vmware-cis-vsphere8-audit/stargazers)
-[![CI](https://github.com/uldyssian-sh/vmware-cis-vsphere8-audit/workflows/CI/badge.svg)](https://github.com/uldyssian-sh/vmware-cis-vsphere8-audit/actions)
-[![Security](https://github.com/uldyssian-sh/vmware-cis-vsphere8-audit/workflows/Security%20Scan/badge.svg)](https://github.com/uldyssian-sh/vmware-cis-vsphere8-audit/actions)
-[![Quality](https://github.com/uldyssian-sh/vmware-cis-vsphere8-audit/workflows/Code%20Quality/badge.svg)](https://github.com/uldyssian-sh/vmware-cis-vsphere8-audit/actions)
+![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
+![PowerShell](https://img.shields.io/badge/PowerShell-5.1%2B-blue.svg)
+![VMware](https://img.shields.io/badge/VMware-vSphere%208-green.svg)
+![Status](https://img.shields.io/badge/Status-Production%20Ready-brightgreen.svg)
 
 ## 📋 Overview
 
@@ -65,6 +63,7 @@ Install-Module VMware.PowerCLI -Force -AllowClobber
 - [Test Suite](tests/)
 - [Contributing Guidelines](CONTRIBUTING.md)
 - [Security Policy](SECURITY.md)
+- [Changelog](CHANGELOG.md)
 
 ## 🔧 Configuration
 
@@ -155,9 +154,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🆘 Support
 
-- 🐛 **Bug Reports**: [Issue Tracker](https://github.com/uldyssian-sh/vmware-cis-vsphere8-audit/issues)
-- 💡 **Feature Requests**: [GitHub Issues](https://github.com/uldyssian-sh/vmware-cis-vsphere8-audit/issues/new)
-- 📖 **Documentation**: [Wiki](https://github.com/uldyssian-sh/vmware-cis-vsphere8-audit/wiki)
+- 🐛 **Bug Reports**: Create an issue in this repository
+- 💡 **Feature Requests**: Submit enhancement requests via issues
+- 📖 **Documentation**: Refer to the docs directory and README
 
 ## 🙏 Acknowledgments
 
@@ -166,12 +165,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Enterprise Security Teams** - For real-world testing and feedback
 - **Open Source Contributors** - For continuous improvements and bug fixes
 
-## 📈 Project Stats
+## 📈 Project Information
 
-![GitHub repo size](https://img.shields.io/github/repo-size/uldyssian-sh/vmware-cis-vsphere8-audit)
-![GitHub code size](https://img.shields.io/github/languages/code-size/uldyssian-sh/vmware-cis-vsphere8-audit)
-![GitHub last commit](https://img.shields.io/github/last-commit/uldyssian-sh/vmware-cis-vsphere8-audit)
-![GitHub contributors](https://img.shields.io/github/contributors/uldyssian-sh/vmware-cis-vsphere8-audit)
+- **Language**: PowerShell
+- **Platform**: Cross-platform (Windows, Linux, macOS)
+- **Dependencies**: VMware PowerCLI 13+
+- **License**: MIT
+- **Maintenance**: Active
 
 ---
 
