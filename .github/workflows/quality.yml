@@ -29,18 +29,16 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run Black formatter check
+      - name: Check Python files exist
         run: |
-          black --check --diff .
-
-      - name: Run Flake8 linter
-        run: |
-          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-
-      - name: Run MyPy type checker
-        run: |
-          mypy . --ignore-missing-imports
+          if find . -name "*.py" -type f | grep -q .; then
+            echo "Python files found, running checks"
+            black --check --diff .
+            flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+            mypy . --ignore-missing-imports
+          else
+            echo "No Python files found, skipping Python checks"
+          fi
 
       - name: Validate YAML files
         uses: ibiqlik/action-yamllint@v3
