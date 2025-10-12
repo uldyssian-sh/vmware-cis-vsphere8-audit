@@ -11,8 +11,3 @@ permissions:
   security-events: write
   actions: read
 
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-

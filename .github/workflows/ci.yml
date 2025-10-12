@@ -1,4 +1,5 @@
 name: CI
+
 on:
   push:
     branches: [main, master]
@@ -10,12 +11,6 @@ permissions:
   security-events: write
   actions: read
 
-
-
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
 jobs:
   test:
     runs-on: ubuntu-latest

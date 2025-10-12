@@ -11,14 +11,6 @@ permissions:
   security-events: write
   actions: read
 
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-  schedule:
-    - cron: '0 2 * * 1'  # Weekly on Monday at 2 AM
-
-
 jobs:
   security-scan:
     runs-on: ubuntu-latest
