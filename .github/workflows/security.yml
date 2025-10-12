@@ -2,16 +2,22 @@ name: Security Scan
 
 on:
   push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+permissions:
+  contents: read
+  security-events: write
+  actions: read
+
+  push:
     branches: [main]
   pull_request:
     branches: [main]
   schedule:
     - cron: '0 2 * * 1'  # Weekly on Monday at 2 AM
 
-permissions:
-  contents: read
-  security-events: write
-  actions: read
 
 jobs:
   security-scan:
