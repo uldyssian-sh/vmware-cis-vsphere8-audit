@@ -1,10 +1,11 @@
-name: Security Scan
+name: Security
 
 on:
   push:
     branches: [main, master]
   pull_request:
     branches: [main, master]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -12,62 +13,23 @@ permissions:
   actions: read
 
 jobs:
-  security-scan:
+  security:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v5
-        with:
-          fetch-depth: 0
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Run Trivy vulnerability scanner
-        run: |
-          echo "Running basic security checks..."
-          # Check for common security issues
-          find . -name "*.ps1" -exec grep -l "password\|credential\|secret" {} \; || echo "No credentials found in PowerShell files"
-          find . -name "*.json" -exec grep -l "password\|credential\|secret" {} \; || echo "No credentials found in JSON files"
-          echo "Security scan completed"
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          severity: 'CRITICAL,HIGH'
 
-      - name: Check for secrets in files
-        run: |
-          echo "Checking for potential secrets..."
-          # Basic secret detection
-          if grep -r "password\s*=\|api[_-]key\|secret[_-]key" . --exclude-dir=.git || true; then
-            echo "Potential secrets detected - please review"
-          else
-            echo "No obvious secrets detected"
-          fi
-
-  powershell-analysis:
-    runs-on: windows-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v5
-
-      - name: Install PSScriptAnalyzer
-        shell: powershell
-        run: |
-          Install-Module -Name PSScriptAnalyzer -Force -Scope CurrentUser
-
-      - name: Run PSScriptAnalyzer
-        shell: powershell
-        run: |
-          try {
-            $ps1Files = Get-ChildItem -Path . -Filter "*.ps1" -Recurse
-            if ($ps1Files.Count -eq 0) {
-              Write-Host "No PowerShell files found to analyze"
-              exit 0
-            }
-            
-            $results = Invoke-ScriptAnalyzer -Path "*.ps1" -Recurse -Severity Error,Warning
-            if ($results) {
-              Write-Host "PSScriptAnalyzer found $($results.Count) issues:"
-              $results | Format-Table -Property Severity,RuleName,Message,Line
-              Write-Host "::warning::PSScriptAnalyzer found issues but continuing"
-            } else {
-              Write-Host "PSScriptAnalyzer passed successfully - no issues found"
-            }
-          } catch {
-            Write-Host "::warning::PSScriptAnalyzer analysis failed: $($_.Exception.Message)"
-            Write-Host "Continuing without PowerShell analysis"
-          }
+      - name: Upload Trivy scan results
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: 'trivy-results.sarif'
