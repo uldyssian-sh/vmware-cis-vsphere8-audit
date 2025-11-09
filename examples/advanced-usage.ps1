@@ -1,3 +1,4 @@
+$ErrorActionPreference = "Stop"
 # Advanced Usage Examples for VMware vSphere 8 CIS Compliance Audit Tool
 
 # Example 1: Audit with custom PowerCLI configuration

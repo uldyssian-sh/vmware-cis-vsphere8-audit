@@ -1,3 +1,4 @@
+$ErrorActionPreference = "Stop"
 BeforeAll {
     # Import the main script for testing
     . "$PSScriptRoot\..\..\cis-vsphere8-audit.ps1"

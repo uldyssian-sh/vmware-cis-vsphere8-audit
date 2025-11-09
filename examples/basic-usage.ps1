@@ -1,3 +1,4 @@
+$ErrorActionPreference = "Stop"
 # Basic Usage Examples for VMware vSphere 8 CIS Compliance Audit Tool
 
 # Example 1: Basic audit of all components

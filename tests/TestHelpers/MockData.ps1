@@ -1,3 +1,4 @@
+$ErrorActionPreference = "Stop"
 # Mock Data and Helper Functions for Testing
 
 # Mock VM objects
