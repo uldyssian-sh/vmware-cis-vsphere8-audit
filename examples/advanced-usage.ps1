@@ -178,3 +178,4 @@ function Invoke-SecureAudit {
 Invoke-SecureAudit -VCenter "vcenter.lab.local" -CredentialFile ".\secure-creds.xml"
 
 Write-Host "`nAll advanced examples completed!" -ForegroundColor Green# Updated Sun Nov  9 12:52:28 CET 2025
+# Updated Sun Nov  9 12:56:25 CET 2025

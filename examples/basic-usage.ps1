@@ -23,3 +23,4 @@ Write-Host "`nExample 5: vCenter-only audit" -ForegroundColor Green
 # Example 6: Production environment audit with failure details
 Write-Host "`nExample 6: Production audit" -ForegroundColor Green
 .\cis-vsphere8-audit.ps1 -vCenter "prod-vcenter.company.com" -Scope All -ShowFailures# Updated Sun Nov  9 12:52:28 CET 2025
+# Updated Sun Nov  9 12:56:25 CET 2025
