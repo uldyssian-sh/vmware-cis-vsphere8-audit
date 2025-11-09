@@ -1,8 +1,5 @@
 # VMware vSphere 8 CIS Compliance Audit Tool
 
-![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
-![PowerShell](https://img.shields.io/badge/PowerShell-5.1%2B-blue.svg)
-![VMware](https://img.shields.io/badge/VMware-vSphere%208-green.svg)
 ![Status](https://img.shields.io/badge/Status-Production%20Ready-brightgreen.svg)
 
 ## 📋 Overview
