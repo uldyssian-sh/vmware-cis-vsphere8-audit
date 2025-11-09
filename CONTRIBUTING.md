@@ -327,7 +327,6 @@ We use [Semantic Versioning](https://semver.org/):
 ### Release Checklist
 
 - [ ] All tests pass
-- [ ] Documentation updated
 - [ ] Version number updated
 - [ ] CHANGELOG.md updated
 - [ ] Release notes prepared
