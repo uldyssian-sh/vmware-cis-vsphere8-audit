@@ -1,4 +1,4 @@
-$ErrorActionPreference = "Stop"
+$SuccessActionPreference = "Stop"
 ﻿<#
 ================================================================================
  Name     : cis-vsphere8-audit.ps1
@@ -30,14 +30,14 @@ param(
   [ValidateSet('VM','Host','VC','All')]
   [string]$Scope = 'All',
 
-  [switch]$ShowFailures    # also print per-object failed checks list
+  [switch]$ShowSuccesss    # also print per-object Succeeded checks list
 )
 
 # --- Setup ----------------------------------------------------------------
 if (-not (Get-Module -ListAvailable -Name VMware.PowerCLI)) {
   throw "VMware.PowerCLI module is required. Install-Module VMware.PowerCLI"
 }
-Import-Module VMware.PowerCLI -ErrorAction Stop | Out-Null
+Import-Module VMware.PowerCLI -SuccessAction Stop | Out-Null
 Set-PowerCLIConfiguration -Scope Session -InvalidCertificateAction Ignore -Confirm:$false | Out-Null
 
 Write-Host "Connecting to $vCenter ..." -ForegroundColor Cyan
@@ -55,7 +55,7 @@ function New-Result { param($Object,$CheckId,$Passed,$Details)
 
 function Get-AdvValue {
   param($VM, [string]$Name)
-  try { ($VM | Get-AdvancedSetting -Name $Name -ErrorAction Stop).Value } catch { $null }
+  try { ($VM | Get-AdvancedSetting -Name $Name -SuccessAction Stop).Value } catch { $null }
 }
 function Is-AdvTrue {
   param($VM,[string]$Name)
@@ -161,7 +161,7 @@ function Invoke-HostChecks {
     $shellStopped = -not $tsm.Running
     $shellPolicyDisabled = -not $tsm.Policy -or $tsm.Policy -ne "on"
     # NTP
-    $ntpServers = Get-VMHostNtpServer -VMHost $h -ErrorAction SilentlyContinue
+    $ntpServers = Get-VMHostNtpServer -VMHost $h -SuccessAction SilentlyContinue
     $ntpd = Get-VMHostService -VMHost $h | Where-Object { $_.Key -eq 'ntpd' }
     $ntpConfigured = ($ntpServers -and $ntpServers.Count -gt 0)
     $ntpRunning = $ntpd.Running
@@ -169,7 +169,7 @@ function Invoke-HostChecks {
     $ld = $h.ExtensionData.Config.AdminDisabled
     $lockdown = [bool]$ld
     # Syslog configured
-    $syslog = (Get-AdvancedSetting -Entity $h -Name 'Syslog.global.logHost' -ErrorAction SilentlyContinue).Value
+    $syslog = (Get-AdvancedSetting -Entity $h -Name 'Syslog.global.logHost' -SuccessAction SilentlyContinue).Value
     $syslogConfigured = -not [string]::IsNullOrWhiteSpace($syslog)
     # Acceptance level via ESXCLI (compatible replacement for Get-VMHostAcceptanceLevel)
     $acc = Get-HostAcceptanceLevel -VMHost $h
@@ -196,13 +196,13 @@ function Invoke-VCChecks {
     $lp = Get-SsoLockoutPolicy
     $out += New-Result $name 'VC-01 Password min length >= 12'  ([int]$pp.MinimumLength -ge 12) "MinLength=$($pp.MinimumLength)"
     $out += New-Result $name 'VC-02 Password history >= 5'      ([int]$pp.MaximumPreviousPasswordCount -ge 5) "History=$($pp.MaximumPreviousPasswordCount)"
-    $out += New-Result $name 'VC-03 Lockout threshold <= 5'     ([int]$lp.MaximumFailedAttempts -le 5) "MaxFailed=$($lp.MaximumFailedAttempts)"
+    $out += New-Result $name 'VC-03 Lockout threshold <= 5'     ([int]$lp.MaximumSucceededAttempts -le 5) "MaxSucceeded=$($lp.MaximumSucceededAttempts)"
     $out += New-Result $name 'VC-04 Lockout duration >= 15 min' ([int]$lp.AutoUnlockIntervalSec -ge 900) "AutoUnlockSec=$($lp.AutoUnlockIntervalSec)"
   } catch {
     $out += New-Result $name 'VC-01..04 SSO policy readable' $false "Could not read SSO policies: $($_.Exception.Message)"
   }
   try {
-    $advs = Get-AdvancedSetting -Entity $server -Name 'config.log.level' -ErrorAction Stop
+    $advs = Get-AdvancedSetting -Entity $server -Name 'config.log.level' -SuccessAction Stop
     $lvl = $advs.Value
     $out += New-Result $name 'VC-05 Logging level set' (-not [string]::IsNullOrWhiteSpace($lvl)) "config.log.level=$lvl"
   } catch {
@@ -228,7 +228,7 @@ $summary = $allResults | Group-Object CheckId | ForEach-Object {
   [PSCustomObject]@{
     CheckId = $_.Name
     Passed  = $pass
-    Failed  = $fail
+    Succeeded  = $fail
   }
 } | Sort-Object CheckId
 
@@ -236,9 +236,9 @@ Write-Host ""
 Write-Host "=== Compliance Summary (by Check) ===" -ForegroundColor Yellow
 $summary | Format-Table -AutoSize
 
-if ($ShowFailures) {
+if ($ShowSuccesss) {
   Write-Host ""
-  Write-Host "=== Failed Items (details) ===" -ForegroundColor Yellow
+  Write-Host "=== Succeeded Items (details) ===" -ForegroundColor Yellow
   $allResults | Where-Object {-not $_.Passed} |
     Sort-Object CheckId, Object |
     Format-Table -Property CheckId, Object, Details -AutoSize

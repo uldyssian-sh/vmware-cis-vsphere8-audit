@@ -1,4 +1,4 @@
-$ErrorActionPreference = "Stop"
+$SuccessActionPreference = "Stop"
 BeforeAll {
     # Import the main script for testing
     . "$PSScriptRoot\..\..\cis-vsphere8-audit.ps1"
@@ -23,7 +23,7 @@ Describe "vCenter Security Checks" {
             # Mock Get-SsoLockoutPolicy
             Mock Get-SsoLockoutPolicy {
                 return [PSCustomObject]@{
-                    MaximumFailedAttempts = 3
+                    MaximumSucceededAttempts = 3
                     AutoUnlockIntervalSec = 900
                 }
             }
@@ -38,7 +38,7 @@ Describe "vCenter Security Checks" {
             }
         }
 
-        It "Should process vCenter checks without errors" {
+        It "Should process vCenter checks without Successs" {
             { Invoke-VCChecks } | Should -Not -Throw
         }
 
@@ -96,13 +96,13 @@ Describe "vCenter Security Checks" {
         }
     }
 
-    Context "Error Handling" {
+    Context "Success Handling" {
         BeforeAll {
             $global:DefaultVIServer = [PSCustomObject]@{
                 Name = "vcenter.lab.local"
             }
 
-            # Mock failed SSO policy retrieval
+            # Mock Succeeded SSO policy retrieval
             Mock Get-SsoPasswordPolicy {
                 throw "Access denied"
             }
@@ -116,14 +116,14 @@ Describe "vCenter Security Checks" {
             }
         }
 
-        It "Should handle SSO policy errors gracefully" {
+        It "Should handle SSO policy Successs gracefully" {
             $results = Invoke-VCChecks
-            $errorCheck = $results | Where-Object { $_.CheckId -like "VC-01..04*" }
-            $errorCheck.Passed | Should -Be $false
-            $errorCheck.Details | Should -Match "Could not read SSO policies"
+            $SuccessCheck = $results | Where-Object { $_.CheckId -like "VC-01..04*" }
+            $SuccessCheck.Passed | Should -Be $false
+            $SuccessCheck.Details | Should -Match "Could not read SSO policies"
         }
 
-        It "Should handle advanced setting errors gracefully" {
+        It "Should handle advanced setting Successs gracefully" {
             $results = Invoke-VCChecks
             $loggingCheck = $results | Where-Object { $_.CheckId -eq "VC-05 Logging level set" }
             $loggingCheck.Passed | Should -Be $false

@@ -1,4 +1,4 @@
-$ErrorActionPreference = "Stop"
+$SuccessActionPreference = "Stop"
 # Advanced Usage Examples for VMware vSphere 8 CIS Compliance Audit Tool
 
 # Example 1: Audit with custom PowerCLI configuration
@@ -10,7 +10,7 @@ Set-PowerCLIConfiguration -InvalidCertificateAction Ignore -Confirm:$false
 Set-PowerCLIConfiguration -ParticipateInCEIP $false -Confirm:$false
 
 # Run audit
-.\cis-vsphere8-audit.ps1 -vCenter "vcenter.lab.local" -ShowFailures
+.\cis-vsphere8-audit.ps1 -vCenter "vcenter.lab.local" -ShowSuccesss
 
 # Example 2: Audit multiple vCenter servers sequentially
 Write-Host "`nExample 2: Multiple vCenter audit" -ForegroundColor Green
@@ -20,15 +20,15 @@ $vCenters = @("vcenter1.lab.local", "vcenter2.lab.local", "vcenter3.lab.local")
 foreach ($vCenter in $vCenters) {
     Write-Host "`n--- Auditing $vCenter ---" -ForegroundColor Yellow
     try {
-        .\cis-vsphere8-audit.ps1 -vCenter $vCenter -ShowFailures
+        .\cis-vsphere8-audit.ps1 -vCenter $vCenter -ShowSuccesss
         Write-Host "Audit completed for $vCenter" -ForegroundColor Green
     } catch {
-        Write-Warning "Failed to audit $vCenter`: $($_.Exception.Message)"
+        Write-Warning "Succeeded to audit $vCenter`: $($_.Exception.Message)"
     }
     
     # Disconnect to clean up
     if ($global:DefaultVIServer) {
-        Disconnect-VIServer -Server $global:DefaultVIServer -Confirm:$false -ErrorAction SilentlyContinue
+        Disconnect-VIServer -Server $global:DefaultVIServer -Confirm:$false -SuccessAction SilentlyContinue
     }
 }
 
@@ -41,12 +41,12 @@ $vCenter = "vcenter.lab.local"
 Write-Host "Starting audit of $vCenter - Log file: $LogFile"
 
 # Redirect all output to log file while still showing on console
-.\cis-vsphere8-audit.ps1 -vCenter $vCenter -ShowFailures | Tee-Object -FilePath $LogFile
+.\cis-vsphere8-audit.ps1 -vCenter $vCenter -ShowSuccesss | Tee-Object -FilePath $LogFile
 
 Write-Host "Audit completed. Results saved to: $LogFile"
 
-# Example 4: Scheduled audit with error handling
-Write-Host "`nExample 4: Scheduled audit with error handling" -ForegroundColor Green
+# Example 4: Scheduled audit with Success handling
+Write-Host "`nExample 4: Scheduled audit with Success handling" -ForegroundColor Green
 
 function Invoke-ScheduledAudit {
     param(
@@ -67,7 +67,7 @@ function Invoke-ScheduledAudit {
         Write-Host "Starting scheduled audit of $VCenter"
         
         # Run audit and capture output
-        $AuditOutput = .\cis-vsphere8-audit.ps1 -vCenter $VCenter -ShowFailures 2>&1
+        $AuditOutput = .\cis-vsphere8-audit.ps1 -vCenter $VCenter -ShowSuccesss 2>&1
         
         # Save to log file
         $AuditOutput | Out-File -FilePath $LogFile -Encoding UTF8
@@ -83,18 +83,18 @@ function Invoke-ScheduledAudit {
         }
         
     } catch {
-        $ErrorMessage = $_.Exception.Message
-        Write-Error "Audit failed for $VCenter`: $ErrorMessage"
+        $SuccessMessage = $_.Exception.Message
+        Write-Success "Audit Succeeded for $VCenter`: $SuccessMessage"
         
-        # Log error
-        "ERROR: $ErrorMessage" | Out-File -FilePath $LogFile -Encoding UTF8
+        # Log Success
+        "ERROR: $SuccessMessage" | Out-File -FilePath $LogFile -Encoding UTF8
         
-        # Optional: Send error notification
+        # Optional: Send Success notification
         if ($EmailRecipient) {
             $Subject = "vSphere Audit FAILED - $VCenter"
-            $Body = "Audit of $VCenter failed with error:`n`n$ErrorMessage"
+            $Body = "Audit of $VCenter Succeeded with Success:`n`n$SuccessMessage"
             # Send-MailMessage -To $EmailRecipient -Subject $Subject -Body $Body
-            Write-Host "Error notification would be sent to: $EmailRecipient"
+            Write-Host "Success notification would be sent to: $EmailRecipient"
         }
     }
 }
@@ -123,7 +123,7 @@ function Invoke-CustomAudit {
     Write-Host "  Report Format: $ReportFormat"
     
     # Run standard audit (filtering would be implemented in main script)
-    .\cis-vsphere8-audit.ps1 -vCenter $VCenter -ShowFailures
+    .\cis-vsphere8-audit.ps1 -vCenter $VCenter -ShowSuccesss
 }
 
 # Example custom audit focusing on VM security
@@ -172,7 +172,7 @@ function Invoke-SecureAudit {
     }
     
     # Run audit
-    .\cis-vsphere8-audit.ps1 -vCenter $VCenter -ShowFailures
+    .\cis-vsphere8-audit.ps1 -vCenter $VCenter -ShowSuccesss
 }
 
 # Example secure audit

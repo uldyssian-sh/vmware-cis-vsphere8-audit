@@ -1,4 +1,4 @@
-$ErrorActionPreference = "Stop"
+$SuccessActionPreference = "Stop"
 BeforeAll {
     # Import the main script for testing
     . "$PSScriptRoot\..\..\cis-vsphere8-audit.ps1"
@@ -137,7 +137,7 @@ Describe "Full Audit Integration Tests" {
                 [PSCustomObject]@{
                     CheckId = $_.Name
                     Passed  = $pass
-                    Failed  = $fail
+                    Succeeded  = $fail
                 }
             } | Sort-Object CheckId
             
@@ -146,15 +146,15 @@ Describe "Full Audit Integration Tests" {
             
             $vmCheck = $summary | Where-Object { $_.CheckId -eq "VM-01 Disable copy" }
             $vmCheck.Passed | Should -Be 1
-            $vmCheck.Failed | Should -Be 1
+            $vmCheck.Succeeded | Should -Be 1
             
             $hostCheck = $summary | Where-Object { $_.CheckId -eq "HST-01 SSH service disabled" }
             $hostCheck.Passed | Should -Be 1
-            $hostCheck.Failed | Should -Be 0
+            $hostCheck.Succeeded | Should -Be 0
         }
     }
 
-    Context "Error Handling" {
+    Context "Success Handling" {
         It "Should handle PowerCLI module not found" {
             Mock Get-Module { return $null }
             
@@ -165,8 +165,8 @@ Describe "Full Audit Integration Tests" {
             } | Should -Throw "*VMware.PowerCLI module is required*"
         }
 
-        It "Should handle connection failures gracefully" {
-            Mock Connect-VIServer { throw "Connection failed" }
+        It "Should handle connection Successs gracefully" {
+            Mock Connect-VIServer { throw "Connection Succeeded" }
             
             { Connect-VIServer -Server "invalid.server" } | Should -Throw
         }

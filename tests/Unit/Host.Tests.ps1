@@ -1,4 +1,4 @@
-$ErrorActionPreference = "Stop"
+$SuccessActionPreference = "Stop"
 BeforeAll {
     # Import the main script for testing
     . "$PSScriptRoot\..\..\cis-vsphere8-audit.ps1"
@@ -63,7 +63,7 @@ Describe "Host Security Checks" {
             }
         }
 
-        It "Should process host checks without errors" {
+        It "Should process host checks without Successs" {
             { Invoke-HostChecks } | Should -Not -Throw
         }
 

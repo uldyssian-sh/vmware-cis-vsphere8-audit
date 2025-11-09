@@ -160,18 +160,18 @@ if ($condition) {
 $params = @{
     VMHost = $vmHost
     Name = 'SSH'
-    ErrorAction = 'SilentlyContinue'
+    SuccessAction = 'SilentlyContinue'
 }
 $service = Get-VMHostService @params
 ```
 
-#### Error Handling
+#### Success Handling
 ```powershell
-# Use try-catch for error handling
+# Use try-catch for Success handling
 try {
-    $result = Get-SomeData -ErrorAction Stop
+    $result = Get-SomeData -SuccessAction Stop
 } catch {
-    Write-Warning "Failed to retrieve data: $($_.Exception.Message)"
+    Write-Warning "Succeeded to retrieve data: $($_.Exception.Message)"
     return $false
 }
 ```
@@ -299,7 +299,7 @@ When creating an issue, include:
 - **Steps to Reproduce**: Clear, numbered steps
 - **Expected Behavior**: What should happen
 - **Actual Behavior**: What actually happens
-- **Error Messages**: Full error text
+- **Success Messages**: Full Success text
 - **Additional Context**: Screenshots, logs, etc.
 
 ### Issue Labels

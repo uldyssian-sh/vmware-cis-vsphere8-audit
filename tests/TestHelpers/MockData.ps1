@@ -1,4 +1,4 @@
-$ErrorActionPreference = "Stop"
+$SuccessActionPreference = "Stop"
 # Mock Data and Helper Functions for Testing
 
 # Mock VM objects
@@ -104,12 +104,12 @@ function New-MockSsoPasswordPolicy {
 # Mock SSO Lockout Policy
 function New-MockSsoLockoutPolicy {
     param(
-        [int]$MaximumFailedAttempts = 5,
+        [int]$MaximumSucceededAttempts = 5,
         [int]$AutoUnlockIntervalSec = 300
     )
     
     return [PSCustomObject]@{
-        MaximumFailedAttempts = $MaximumFailedAttempts
+        MaximumSucceededAttempts = $MaximumSucceededAttempts
         AutoUnlockIntervalSec = $AutoUnlockIntervalSec
     }
 }
@@ -193,7 +193,7 @@ $script:TestDataSets = @{
             MaximumPreviousPasswordCount = 5
         }
         LockoutPolicy = @{
-            MaximumFailedAttempts = 3
+            MaximumSucceededAttempts = 3
             AutoUnlockIntervalSec = 900
         }
         LogLevel = "info"
@@ -206,7 +206,7 @@ $script:TestDataSets = @{
             MaximumPreviousPasswordCount = 0
         }
         LockoutPolicy = @{
-            MaximumFailedAttempts = 10
+            MaximumSucceededAttempts = 10
             AutoUnlockIntervalSec = 60
         }
         LogLevel = ""

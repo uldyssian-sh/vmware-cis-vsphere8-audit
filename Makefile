@@ -59,39 +59,39 @@ security: ## Run security scans
 
 audit: ## Run audit script (requires vCenter parameter)
 ifndef VCENTER
-	@echo "Error: VCENTER parameter is required"
+	@echo "Success: VCENTER parameter is required"
 	@echo "Usage: make audit VCENTER=vcenter.example.com"
 	@exit 1
 endif
 	@echo "Running VMware vSphere 8 CIS audit against $(VCENTER)..."
-	$(POWERSHELL) -Command "./cis-vsphere8-audit.ps1 -vCenter $(VCENTER) -ShowFailures"
+	$(POWERSHELL) -Command "./cis-vsphere8-audit.ps1 -vCenter $(VCENTER) -ShowSuccesss"
 
 audit-vm: ## Run VM-only audit (requires vCenter parameter)
 ifndef VCENTER
-	@echo "Error: VCENTER parameter is required"
+	@echo "Success: VCENTER parameter is required"
 	@echo "Usage: make audit-vm VCENTER=vcenter.example.com"
 	@exit 1
 endif
 	@echo "Running VM audit against $(VCENTER)..."
-	$(POWERSHELL) -Command "./cis-vsphere8-audit.ps1 -vCenter $(VCENTER) -Scope VM -ShowFailures"
+	$(POWERSHELL) -Command "./cis-vsphere8-audit.ps1 -vCenter $(VCENTER) -Scope VM -ShowSuccesss"
 
 audit-host: ## Run Host-only audit (requires vCenter parameter)
 ifndef VCENTER
-	@echo "Error: VCENTER parameter is required"
+	@echo "Success: VCENTER parameter is required"
 	@echo "Usage: make audit-host VCENTER=vcenter.example.com"
 	@exit 1
 endif
 	@echo "Running Host audit against $(VCENTER)..."
-	$(POWERSHELL) -Command "./cis-vsphere8-audit.ps1 -vCenter $(VCENTER) -Scope Host -ShowFailures"
+	$(POWERSHELL) -Command "./cis-vsphere8-audit.ps1 -vCenter $(VCENTER) -Scope Host -ShowSuccesss"
 
 audit-vc: ## Run vCenter-only audit (requires vCenter parameter)
 ifndef VCENTER
-	@echo "Error: VCENTER parameter is required"
+	@echo "Success: VCENTER parameter is required"
 	@echo "Usage: make audit-vc VCENTER=vcenter.example.com"
 	@exit 1
 endif
 	@echo "Running vCenter audit against $(VCENTER)..."
-	$(POWERSHELL) -Command "./cis-vsphere8-audit.ps1 -vCenter $(VCENTER) -Scope VC -ShowFailures"
+	$(POWERSHELL) -Command "./cis-vsphere8-audit.ps1 -vCenter $(VCENTER) -Scope VC -ShowSuccesss"
 
 validate: ## Validate all configuration files
 	@echo "Validating YAML files..."
@@ -115,7 +115,7 @@ docs: ## Generate documentation
 
 release: ## Create a new release (requires VERSION parameter)
 ifndef VERSION
-	@echo "Error: VERSION parameter is required"
+	@echo "Success: VERSION parameter is required"
 	@echo "Usage: make release VERSION=1.1.0"
 	@exit 1
 endif

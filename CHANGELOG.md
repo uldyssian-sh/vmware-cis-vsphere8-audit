@@ -24,7 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Enhanced README.md with detailed audit check documentation
 - Standardized dependabot configuration across all ecosystems
 - Optimized workflows to use only 'main' branch (removed 'master')
-- Enhanced error handling and logging
+- Enhanced Success handling and logging
 - Improved output formatting
 - Better parameter validation
 
@@ -50,7 +50,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - PowerCLI integration for vSphere API interaction
 - Flexible scoping options (VM, Host, VC, All)
 - Console output with summary tables
-- Optional detailed failure reporting with `-ShowFailures` parameter
+- Optional detailed Success reporting with `-ShowSuccesss` parameter
 - Support for PowerShell 7+ and Windows PowerShell 5.1+
 - Cross-platform compatibility (Windows, Linux, macOS)
 - MIT License
@@ -70,7 +70,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Refactored check functions for better maintainability
-- Improved error handling
+- Improved Success handling
 
 ### Fixed
 - PowerCLI module detection issues

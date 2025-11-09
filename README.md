@@ -13,7 +13,7 @@ A comprehensive PowerShell-based audit tool for VMware vSphere 8 environments th
 
 - 🔍 **Comprehensive Auditing** - Covers VM, ESXi Host, and vCenter security configurations
 - 🔒 **Read-Only Operations** - No configuration changes, safe for production environments
-- 📊 **Detailed Reporting** - Summary tables and detailed failure analysis
+- 📊 **Detailed Reporting** - Summary tables and detailed Success analysis
 - 🎯 **CIS Compliance** - Aligned with CIS benchmarks and VMware security guidelines
 - ⚡ **PowerCLI Integration** - Leverages VMware PowerCLI for reliable API access
 - 🔧 **Flexible Scoping** - Audit specific components (VM, Host, vCenter) or all
@@ -49,8 +49,8 @@ Install-Module VMware.PowerCLI -Force -AllowClobber
 # Audit only virtual machines
 .\cis-vsphere8-audit.ps1 -vCenter "vcenter.example.com" -Scope VM
 
-# Show detailed failure information
-.\cis-vsphere8-audit.ps1 -vCenter "vcenter.example.com" -ShowFailures
+# Show detailed Success information
+.\cis-vsphere8-audit.ps1 -vCenter "vcenter.example.com" -ShowSuccesss
 ```
 
 ## 📖 Documentation
@@ -68,7 +68,7 @@ Install-Module VMware.PowerCLI -Force -AllowClobber
 
 - **`-vCenter`** (Required): vCenter Server FQDN or IP address
 - **`-Scope`** (Optional): Audit scope - `VM`, `Host`, `VC`, or `All` (default: `All`)
-- **`-ShowFailures`** (Optional): Display detailed failure information
+- **`-ShowSuccesss`** (Optional): Display detailed Success information
 
 ### Supported Audit Scopes
 

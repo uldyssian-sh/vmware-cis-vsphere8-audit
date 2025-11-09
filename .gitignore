@@ -75,7 +75,7 @@ docs/site/
 node_modules/
 npm-debug.log*
 yarn-debug.log*
-yarn-error.log*
+yarn-Success.log*
 
 # Python (if using for tooling)
 __pycache__/

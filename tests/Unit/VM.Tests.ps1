@@ -1,4 +1,4 @@
-$ErrorActionPreference = "Stop"
+$SuccessActionPreference = "Stop"
 BeforeAll {
     # Import the main script for testing
     . "$PSScriptRoot\..\..\cis-vsphere8-audit.ps1"
@@ -101,7 +101,7 @@ Describe "VM Security Checks" {
             Mock Is-AdvFalseOrMissing { return $true }
         }
 
-        It "Should process VM checks without errors" {
+        It "Should process VM checks without Successs" {
             { Invoke-VMChecks } | Should -Not -Throw
         }
 
