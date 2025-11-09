@@ -129,4 +129,4 @@ Describe "vCenter Security Checks" {
             $loggingCheck.Details | Should -Match "No config.log.level"
         }
     }
-}
+}# Updated 20251109_123817
