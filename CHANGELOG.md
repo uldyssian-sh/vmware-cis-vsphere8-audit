@@ -20,7 +20,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - SARIF security reporting
 
 ### Changed
-- Updated GitHub Actions to use latest versions (checkout@v4)
 - Improved package.json with scoped npm package name (@uldyssian-sh/vmware-cis-vsphere8-audit)
 - Enhanced README.md with detailed audit check documentation
 - Standardized dependabot configuration across all ecosystems
@@ -33,7 +32,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Resolved hardcoded repository references in workflows
 - Fixed inconsistent ignore configurations in dependabot.yml
 - Corrected npm package scoping for security compliance
-- Updated deprecated GitHub Actions versions
 - Minor bug fixes in host acceptance level detection
 
 ### Security
@@ -94,4 +92,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Deprecated** for soon-to-be removed features
 - **Removed** for now removed features
 - **Fixed** for any bug fixes
-- **Security** in case of vulnerabilities# Updated 20251109_123817

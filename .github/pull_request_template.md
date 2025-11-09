@@ -19,7 +19,6 @@ Related to #(issue number)
 ## Changes Made
 - [ ] Added new audit check for [describe]
 - [ ] Fixed issue with [describe]
-- [ ] Updated documentation for [describe]
 - [ ] Improved error handling for [describe]
 - [ ] Added tests for [describe]
 

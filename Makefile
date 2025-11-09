@@ -131,4 +131,3 @@ check-deps: ## Check for dependency updates
 	$(POWERSHELL) -Command "Get-InstalledModule | Where-Object {$_.Name -in @('VMware.PowerCLI', 'Pester', 'PSScriptAnalyzer')}"
 
 ci: lint test security ## Run all CI checks locally
-	@echo "All CI checks completed successfully!"# Updated 20251109_123817

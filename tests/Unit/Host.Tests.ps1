@@ -138,4 +138,3 @@ Describe "Host Security Checks" {
             $level | Should -Be "VMwareAccepted"
         }
     }
-}# Updated 20251109_123817

@@ -129,7 +129,6 @@ Interested in contributing? We'd love to have you join our community!
 
 ---
 
-**Last Updated**: 2024-01-15  
 **Contributors Count**: 3
 
 *This file is automatically updated when new contributors join the project.*
