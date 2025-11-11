@@ -12,6 +12,12 @@
 [![Size](https://img.shields.io/github/repo-size/uldyssian-sh/vmware-cis-vsphere8-audit?style=flat-square)](#)
 [![Security Scan](https://img.shields.io/badge/security-scanned-green?style=flat-square)](#)
 
+[![License](https://img.shields.io/github/license/uldyssian-sh/vmware-cis-vsphere8-audit?style=flat-square)](LICENSE)
+[![Status](https://img.shields.io/badge/status-active-brightgreen?style=flat-square)](#)
+[![Languages](https://img.shields.io/github/languages/count/uldyssian-sh/vmware-cis-vsphere8-audit?style=flat-square)](#)
+[![Size](https://img.shields.io/github/repo-size/uldyssian-sh/vmware-cis-vsphere8-audit?style=flat-square)](#)
+[![Security Scan](https://img.shields.io/badge/security-scanned-green?style=flat-square)](#)
+
 
 ## 📋 Overview
 
@@ -44,6 +50,12 @@ A comprehensive PowerShell-based audit tool for VMware vSphere 8 environments th
 
 ```bash
 # Clone repository
+
+[![License](https://img.shields.io/github/license/uldyssian-sh/vmware-cis-vsphere8-audit?style=flat-square)](LICENSE)
+[![Status](https://img.shields.io/badge/status-active-brightgreen?style=flat-square)](#)
+[![Languages](https://img.shields.io/github/languages/count/uldyssian-sh/vmware-cis-vsphere8-audit?style=flat-square)](#)
+[![Size](https://img.shields.io/github/repo-size/uldyssian-sh/vmware-cis-vsphere8-audit?style=flat-square)](#)
+[![Security Scan](https://img.shields.io/badge/security-scanned-green?style=flat-square)](#)
 
 [![License](https://img.shields.io/github/license/uldyssian-sh/vmware-cis-vsphere8-audit?style=flat-square)](LICENSE)
 [![Status](https://img.shields.io/badge/status-active-brightgreen?style=flat-square)](#)
