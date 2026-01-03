@@ -172,3 +172,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Made with ❤️ by [uldyssian-sh](https://github.com/uldyssian-sh)**
 <!-- Deployment trigger Wed Sep 17 22:40:48 CEST 2025 -->
+⭐ Star this repository if you find it helpful!
