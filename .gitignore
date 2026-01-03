@@ -198,3 +198,7 @@ Thumbs.db
 node_modules/
 .vscode/settings.json
 .idea/
+
+# Security - Sensitive Files
+config.json
+secrets.json
